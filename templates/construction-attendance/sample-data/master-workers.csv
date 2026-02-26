@@ -1,0 +1,11 @@
+作業員ID,氏名,Larkアカウント,職種,所属班,班長フラグ,日当単価(円),連絡先,ステータス,所属案件
+W-001,山田一郎,yamada@example.com,とび,A班,TRUE,22000,090-1234-5678,稼働中,PJ-001
+W-002,中村健太,nakamura@example.com,鉄筋工,A班,FALSE,18000,090-2345-6789,稼働中,PJ-001
+W-003,小林正義,kobayashi@example.com,型枠大工,A班,FALSE,20000,090-3456-7890,稼働中,PJ-001
+W-004,加藤修一,kato@example.com,左官,B班,TRUE,21000,090-4567-8901,稼働中,PJ-002
+W-005,吉田裕介,yoshida@example.com,電気工,B班,FALSE,19000,090-5678-9012,稼働中,PJ-002
+W-006,渡辺大輔,watanabe@example.com,配管工,B班,FALSE,18500,090-6789-0123,稼働中,PJ-002
+W-007,伊藤誠,ito@example.com,塗装工,B班,FALSE,17000,090-7890-1234,稼働中,PJ-002
+W-008,高橋勇気,takahashi@example.com,解体工,A班,FALSE,18000,090-8901-2345,稼働中,PJ-001
+W-009,松本龍二,matsumoto@example.com,重機オペレーター,C班,FALSE,25000,090-9012-3456,稼働中,PJ-003
+W-010,井上拓也,inoue@example.com,鉄筋工,C班,FALSE,15000,090-0123-4567,稼働中,PJ-003
