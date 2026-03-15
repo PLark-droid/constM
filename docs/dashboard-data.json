@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-02-23T04:45:07.180Z",
+  "repository": "PLark-droid/constM",
+  "project_number": "1",
+  "agents": [
+    {
+      "name": "CoordinatorAgent",
+      "type": "coordinator",
+      "status": "active"
+    },
+    {
+      "name": "IssueAgent",
+      "type": "issue",
+      "status": "active"
+    },
+    {
+      "name": "CodeGenAgent",
+      "type": "codegen",
+      "status": "active"
+    },
+    {
+      "name": "ReviewAgent",
+      "type": "review",
+      "status": "active"
+    },
+    {
+      "name": "PRAgent",
+      "type": "pr",
+      "status": "active"
+    },
+    {
+      "name": "DeploymentAgent",
+      "type": "deployment",
+      "status": "active"
+    },
+    {
+      "name": "TestAgent",
+      "type": "test",
+      "status": "active"
+    }
+  ],
+  "workflows": [
+    {
+      "name": "Issue Opened - Auto Label",
+      "status": "active"
+    },
+    {
+      "name": "PR Opened - Auto Review",
+      "status": "active"
+    },
+    {
+      "name": "Autonomous Agent Execution",
+      "status": "active"
+    },
+    {
+      "name": "Deploy GitHub Pages",
+      "status": "active"
+    },
+    {
+      "name": "State Machine Automation",
+      "status": "active"
+    },
+    {
+      "name": "Economic Circuit Breaker",
+      "status": "active"
+    },
+    {
+      "name": "Webhook Event Handler",
+      "status": "active"
+    },
+    {
+      "name": "Webhook Event Router",
+      "status": "active"
+    },
+    {
+      "name": "Weekly Report",
+      "status": "active"
+    },
+    {
+      "name": "Weekly KPI Report",
+      "status": "active"
+    },
+    {
+      "name": "Label Sync",
+      "status": "active"
+    },
+    {
+      "name": "Project Sync",
+      "status": "active"
+    },
+    {
+      "name": "Auto Add to Project",
+      "status": "active"
+    },
+    {
+      "name": "Update Project Status",
+      "status": "active"
+    }
+  ],
+  "metrics": {
+    "open_issues": 1,
+    "labels_count": 46,
+    "workflows_count": 14,
+    "agents_count": 7
+  }
+}

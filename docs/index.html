@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>constM - Miyabi Dashboard</title>
+  <style>
+    :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #c9d1d9; --accent: #f78166; --green: #3fb950; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 2rem; }
+    h1 { color: var(--accent); margin-bottom: 0.5rem; }
+    .subtitle { color: #8b949e; margin-bottom: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; }
+    .card h3 { font-size: 0.85rem; color: #8b949e; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .card .value { font-size: 2rem; font-weight: bold; color: var(--green); }
+    .agents { margin-top: 2rem; }
+    .agent { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 0.5rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .updated { color: #8b949e; font-size: 0.8rem; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <h1>constM Dashboard</h1>
+  <p class="subtitle">Miyabi Framework - Autonomous Development Status</p>
+  <div class="grid" id="metrics"></div>
+  <div class="agents">
+    <h2 style="margin-bottom: 1rem;">Agents</h2>
+    <div id="agents-list"></div>
+  </div>
+  <p class="updated" id="updated"></p>
+  <script>
+    fetch('dashboard-data.json')
+      .then(r => r.json())
+      .then(data => {
+        const m = data.metrics;
+        document.getElementById('metrics').innerHTML = [
+          { label: 'Agents', value: m.agents_count },
+          { label: 'Workflows', value: m.workflows_count },
+          { label: 'Labels', value: m.labels_count },
+          { label: 'Open Issues', value: m.open_issues },
+        ].map(i => `<div class="card"><h3>${i.label}</h3><div class="value">${i.value}</div></div>`).join('');
+
+        document.getElementById('agents-list').innerHTML = data.agents
+          .map(a => `<div class="agent"><span class="dot"></span><strong>${a.name}</strong><span style="color:#8b949e">${a.type}</span></div>`)
+          .join('');
+
+        document.getElementById('updated').textContent = `Last updated: ${new Date(data.generated_at).toLocaleString('ja-JP')}`;
+      })
+      .catch(() => {
+        document.getElementById('metrics').innerHTML = '<p>Dashboard data not available yet.</p>';
+      });
+  </script>
+</body>
+</html>

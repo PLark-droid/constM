@@ -108,24 +108,24 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # GitHub Actions分は無料枠内の想定 (3000分/月)
-          # 念のため使用量を確認
-
           OWNER=$(echo "${{ github.repository }}" | cut -d'/' -f1)
           REPO=$(echo "${{ github.repository }}" | cut -d'/' -f2)
 
-          # 当月のActions使用時間を取得
-          MONTH_START_UNIX=$(date -d "$(date +%Y-%m-01)" +%s)
-          CURRENT_UNIX=$(date +%s)
+          # 当月の開始日を取得
+          MONTH_START=$(date -u +"%Y-%m-01T00:00:00Z")
 
-          # GitHub API: Workflow runs (last 30 days)
-          TOTAL_MINUTES=$(gh api \
+          # GitHub API: 当月のWorkflow runs数を取得して使用時間を推定
+          RUN_COUNT=$(gh api \
             -H "Accept: application/vnd.github+json" \
-            "/repos/$OWNER/$REPO/actions/runs?per_page=100" \
-            --jq '[.workflow_runs[] | select(.created_at >= "'$(date -d "@$MONTH_START_UNIX" -u +%Y-%m-%dT%H:%M:%SZ)'") | .run_duration_ms // 0] | add // 0' \
-            | awk '{print int($1/60000)}')
+            "/repos/$OWNER/$REPO/actions/runs?per_page=100&created=%3E%3D${MONTH_START}" \
+            --jq '.total_count // 0')
+
+          # 1実行あたり平均2分と推定
+          TOTAL_MINUTES=$((RUN_COUNT * 2))
 
           echo "github_minutes=$TOTAL_MINUTES" >> $GITHUB_OUTPUT
-          echo "⚙️ GitHub Actions Usage: ${TOTAL_MINUTES} minutes this month"
+          echo "github_run_count=$RUN_COUNT" >> $GITHUB_OUTPUT
+          echo "⚙️ GitHub Actions: ${RUN_COUNT} runs (~${TOTAL_MINUTES} minutes) this month"
 
           # 無料枠3000分を超えたら警告
           if [ "$TOTAL_MINUTES" -gt 3000 ]; then

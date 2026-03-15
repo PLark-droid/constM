@@ -1,0 +1,21 @@
+# Economic Governance Protocol - Budget Configuration
+# AGENTS.md v5.0 準拠
+
+monthly_budget_usd: 500
+
+thresholds:
+  warning: 0.8       # 80% - 警告発行
+  emergency: 1.5     # 150% - サーキットブレーカー発動
+
+cost_breakdown:
+  anthropic_api: 400  # Claude API monthly budget
+  firebase: 100       # Firebase/GCP monthly budget
+
+emergency_actions:
+  disable_workflows:
+    - autonomous-agent.yml
+    - deploy-pages.yml
+
+monitoring:
+  interval_hours: 1
+  retention_days: 90

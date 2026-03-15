@@ -56,6 +56,19 @@
       ],
       "disabled": false,
       "description": "Miyabi CLI統合 - プロジェクト作成、Agent実行、自動化機能"
+    },
+    "miyabi-mcp-bundle": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "miyabi-mcp-bundle"
+      ],
+      "env": {
+        "MIYABI_REPO_PATH": ".",
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "disabled": false,
+      "description": "Miyabi All-in-One MCP Server - 172 tools, 38 agents, 22 skills"
     }
   }
 }
